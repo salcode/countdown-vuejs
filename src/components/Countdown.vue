@@ -66,7 +66,20 @@ export default {
 				'6': 'Berlin, Germany',
 			};
 			return locations[ this.hours ];
-		}
+		},
+        celebrate() {
+            this.hideCountdown();
+            var that = this;
+            setTimeout( function() {
+                that.showCountdown();
+            }, 2000 );
+        },
+        hideCountdown() {
+            document.getElementsByClassName('countdown')[0].classList.add('hide-me');
+        },
+        showCountdown() {
+            document.getElementsByClassName('countdown')[0].classList.remove('hide-me');
+        },
 	}
 }
 
@@ -78,6 +91,9 @@ export default {
     color: #fff;
     font-weight: normal;
     text-align: center;
+}
+.countdown.hide-me {
+    display: none;
 }
 .countdown {
     align-items: center;
