@@ -44,10 +44,6 @@ export default {
             return Math.trunc((this.date - this.now) / 60 / 60) % 24;
         },
 
-        days() {
-            return Math.trunc((this.date - this.now) / 60 / 60 / 24);
-        },
-
 		location() {
 			return this.getLocation();
 		}
