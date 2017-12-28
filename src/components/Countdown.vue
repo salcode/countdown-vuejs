@@ -1,4 +1,5 @@
 <template>
+    <canvas id="countdown-canvas"></canvas>
     <h1 class="location">
         <p class="location__name">{{ location }}</p>
     </h1>
@@ -10,16 +11,18 @@
     </div><!-- .countdown -->
 </template>
 <script>
+
 export default {
 
     ready() {
+        this.celebrating = false;
         window.setInterval(() => {
             this.now = Math.trunc((new Date()).getTime() / 1000);
             this.secondsRemaining = this.getSecondsRemaining();
-            if ( 0 === this.secondsRemaining % 3600 ) {
+            if ( ! this.celebrating && 0 === this.secondsRemaining % 60 ) {
                 this.celebrate();
             }
-        },1000);
+        },250);
     },
 
     props : {
@@ -32,6 +35,7 @@ export default {
     data() {
         return {
             now: Math.trunc((new Date()).getTime() / 1000),
+            celebrating: false,
             secondsRemaining: this.getSecondsRemaining()
         }
     },
@@ -70,17 +74,21 @@ export default {
                 '5': 'London, England',
                 '6': 'Berlin, Germany',
             };
-            return locations[ this.hours ];
+            return locations[ this.hours ] ? locations[ this.hours ] : 'Location ' + this.hours;
         },
         getSecondsRemaining() {
             return this.date - Math.trunc(new Date().getTime() / 1000 );
         },
         celebrate() {
+            this.celebrating = true;
             this.hideCountdown();
+            confettiStart();
             var that = this;
             setTimeout( function() {
                 that.showCountdown();
-            }, 2000 );
+                confettiStop();
+                that.celebrating = false;
+            }, 5000 );
         },
         hideCountdown() {
             document.getElementsByClassName('countdown')[0].classList.add('hide-me');
@@ -98,7 +106,9 @@ export default {
 .location {
     color: #fff;
     font-weight: normal;
+    position: relative;
     text-align: center;
+    z-index: 2;
 }
 .countdown.hide-me {
     display: none;
@@ -112,6 +122,7 @@ export default {
     justify-content: center;
     right: 0;
     top: 0;
+    z-index: 2;
 }
 
 .block {
@@ -127,5 +138,14 @@ export default {
     font-family: 'Roboto', serif;
     margin: 10px;
     text-align: center;
+}
+#countdown-canvas {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
 </style>
