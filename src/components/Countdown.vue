@@ -15,6 +15,10 @@ export default {
     ready() {
         window.setInterval(() => {
             this.now = Math.trunc((new Date()).getTime() / 1000);
+            this.secondsRemaining = this.getSecondsRemaining();
+            if ( 0 === this.secondsRemaining % 3600 ) {
+                this.celebrate();
+            }
         },1000);
     },
 
@@ -27,21 +31,22 @@ export default {
 
     data() {
         return {
-            now: Math.trunc((new Date()).getTime() / 1000)
+            now: Math.trunc((new Date()).getTime() / 1000),
+            secondsRemaining: this.getSecondsRemaining()
         }
     },
 
     computed: {
         seconds() {
-            return this.addLeadingZero( (this.date - this.now) % 60 );
+            return this.addLeadingZero( this.secondsRemaining % 60 );
         },
 
         minutes() {
-            return Math.trunc((this.date - this.now) / 60) % 60;
+            return Math.trunc( this.secondsRemaining / 60) % 60;
         },
 
         hours() {
-            return Math.trunc((this.date - this.now) / 60 / 60) % 24;
+            return Math.trunc( this.secondsRemaining / 60 / 60) % 24;
         },
 
 		location() {
@@ -66,6 +71,9 @@ export default {
                 '6': 'Berlin, Germany',
             };
             return locations[ this.hours ];
+        },
+        getSecondsRemaining() {
+            return this.date - Math.trunc(new Date().getTime() / 1000 );
         },
         celebrate() {
             this.hideCountdown();
