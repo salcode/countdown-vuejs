@@ -1,20 +1,22 @@
 <template>
-    <div class="block">
-        <p class="digit">{{ days }}</p>
-        <p class="text">Days</p>
+    <div class="location">
+        <p class="location__name">{{ days }}</p>
     </div>
-    <div class="block">
-        <p class="digit">{{ hours }}</p>
-        <p class="text">Hours</p>
-    </div>
-    <div class="block">
-        <p class="digit">{{ minutes }}</p>
-        <p class="text">Minutes</p>
-    </div>
-    <div class="block">
-        <p class="digit">{{ seconds }}</p>
-        <p class="text">Seconds</p>
-    </div>
+
+	<div class="countdown">
+		<div class="block">
+			<p class="digit">{{ hours }}</p>
+			<p class="text">Hours</p>
+		</div>
+		<div class="block">
+			<p class="digit">{{ minutes }}</p>
+			<p class="text">Minutes</p>
+		</div>
+		<div class="block">
+			<p class="digit">{{ seconds }}</p>
+			<p class="text">Seconds</p>
+		</div>
+	</div><!-- .countdown -->
 </template>
 <script>
 export default {
@@ -60,6 +62,12 @@ export default {
 </script>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400|Roboto:100);
+
+.countdown {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 
 .block {
     display: flex;

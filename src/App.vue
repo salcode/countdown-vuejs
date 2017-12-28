@@ -13,12 +13,9 @@ export default {
 </script>
 
 <style>
-#app{
-    align-items: center;
-    bottom: 0;
+#app {
     background-color: #34495e;
-    display: flex;
-    justify-content: center;
+    bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
