@@ -5,7 +5,7 @@
 
     <div class="countdown">
         <div class="block">
-            <p class="digit">{{ minutes }} : {{ seconds }}</p>
+            <p class="digit">{{ minutes }}:{{ seconds }}</p>
         </div>
     </div><!-- .countdown -->
 </template>
@@ -81,8 +81,13 @@ export default {
 }
 .countdown {
     align-items: center;
+    bottom: 0;
     display: flex;
+    left: 0;
+    position: absolute;
     justify-content: center;
+    right: 0;
+    top: 0;
 }
 
 .block {
