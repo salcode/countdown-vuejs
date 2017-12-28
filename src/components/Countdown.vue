@@ -33,7 +33,7 @@ export default {
 
     computed: {
         seconds() {
-            return (this.date - this.now) % 60;
+            return this.addLeadingZero( (this.date - this.now) % 60 );
         },
 
         minutes() {
@@ -49,6 +49,12 @@ export default {
 		}
     },
 	methods: {
+        addLeadingZero( number ) {
+            if ( number > 9 ) {
+                return number;
+            }
+            return '0' + number;
+        },
 		getLocation() {
 			var locations = {
 				'0': 'Reading, PA',
