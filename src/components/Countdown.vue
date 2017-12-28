@@ -1,18 +1,18 @@
 <template>
     <div class="block">
-        <p class="digit">{{ days | two_digits }}</p>
+        <p class="digit">{{ days }}</p>
         <p class="text">Days</p>
     </div>
     <div class="block">
-        <p class="digit">{{ hours | two_digits }}</p>
+        <p class="digit">{{ hours }}</p>
         <p class="text">Hours</p>
     </div>
     <div class="block">
-        <p class="digit">{{ minutes | two_digits }}</p>
+        <p class="digit">{{ minutes }}</p>
         <p class="text">Minutes</p>
     </div>
     <div class="block">
-        <p class="digit">{{ seconds | two_digits }}</p>
+        <p class="digit">{{ seconds }}</p>
         <p class="text">Seconds</p>
     </div>
 </template>
