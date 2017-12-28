@@ -1,6 +1,6 @@
 <template>
     <div class="location">
-        <p class="location__name">{{ days }}</p>
+        <p class="location__name">{{ location }}</p>
     </div>
 
 	<div class="countdown">
@@ -55,8 +55,26 @@ export default {
 
         days() {
             return Math.trunc((this.date - this.now) / 60 / 60 / 24);
-        }
-    }
+        },
+
+		location() {
+			return this.getLocation();
+		}
+    },
+	methods: {
+		getLocation() {
+			var locations = {
+				'0': 'Reading, PA',
+				'1': 'Halifax, Nova Scotia, Canada',
+				'2': 'Buenos Aires, Argentina',
+				'3': 'Rio de Janeiro, Brazil',
+				'4': 'Praia, Cape Verde',
+				'5': 'London, England',
+				'6': 'Berlin, Germany',
+			};
+			return locations[ this.hours ];
+		}
+	}
 }
 
 </script>
