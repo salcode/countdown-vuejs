@@ -7,5 +7,21 @@
   <body>
     <app></app>
     <script src="dist/build.js"></script>
+    <script src="node_modules/confetti-js/dist/index.min.js"></script>
+    <script>
+var confetti;
+function confettiStart() {
+	if ( ! confetti ) {
+        confetti = new ConfettiGenerator({
+            target: 'countdown-canvas'
+        });
+	}
+	confetti.render();
+}
+function confettiStop() {
+    confetti.clear();
+}
+    </script>
+
   </body>
 </html>
