@@ -3,20 +3,11 @@
         <p class="location__name">{{ location }}</p>
     </div>
 
-	<div class="countdown">
-		<div class="block">
-			<p class="digit">{{ hours }}</p>
-			<p class="text">Hours</p>
-		</div>
-		<div class="block">
-			<p class="digit">{{ minutes }}</p>
-			<p class="text">Minutes</p>
-		</div>
-		<div class="block">
-			<p class="digit">{{ seconds }}</p>
-			<p class="text">Seconds</p>
-		</div>
-	</div><!-- .countdown -->
+    <div class="countdown">
+        <div class="block">
+            <p class="digit">{{ minutes }} : {{ seconds }}</p>
+        </div>
+    </div><!-- .countdown -->
 </template>
 <script>
 export default {
@@ -91,16 +82,6 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 20px;
-}
-
-.text {
-    color: #1abc9c;
-    font-size: 40px;
-    font-family: 'Roboto Condensed', serif;
-    font-weight: 400;
-    margin-top:10px;
-    margin-bottom: 10px;
-    text-align: center;
 }
 
 .digit {
