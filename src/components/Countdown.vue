@@ -1,7 +1,7 @@
 <template>
-    <div class="location">
+    <h1 class="location">
         <p class="location__name">{{ location }}</p>
-    </div>
+    </h1>
 
     <div class="countdown">
         <div class="block">
@@ -74,6 +74,11 @@ export default {
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400|Roboto:100);
 
+.location {
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+}
 .countdown {
     align-items: center;
     display: flex;
