@@ -55,18 +55,18 @@ export default {
             }
             return '0' + number;
         },
-		getLocation() {
-			var locations = {
-				'0': 'Reading, PA',
-				'1': 'Halifax, Nova Scotia, Canada',
-				'2': 'Buenos Aires, Argentina',
-				'3': 'Rio de Janeiro, Brazil',
-				'4': 'Praia, Cape Verde',
-				'5': 'London, England',
-				'6': 'Berlin, Germany',
-			};
-			return locations[ this.hours ];
-		},
+        getLocation() {
+            var locations = {
+                '0': 'Reading, PA',
+                '1': 'Halifax, Nova Scotia, Canada',
+                '2': 'Buenos Aires, Argentina',
+                '3': 'Rio de Janeiro, Brazil',
+                '4': 'Praia, Cape Verde',
+                '5': 'London, England',
+                '6': 'Berlin, Germany',
+            };
+            return locations[ this.hours ];
+        },
         celebrate() {
             this.hideCountdown();
             var that = this;
