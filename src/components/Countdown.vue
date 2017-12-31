@@ -1,5 +1,5 @@
 <template>
-    <div class="background" style="background-image: url(images/{{backgroundImage}});"></div>
+    <div class="background" v-bind:style="backgroundStyleObject"></div>
     <canvas id="countdown-canvas"></canvas>
     <h1 class="location">
         <p class="location__name">{{ location }}</p>
@@ -107,8 +107,11 @@ export default {
 			return this.getLocation().name;
 		},
 
-        backgroundImage() {
-            return this.getLocation().image;
+        backgroundStyleObject() {
+            return {
+                'backgroundImage':
+                'url(images/' + this.getLocation().image + ')'
+            };
         },
     },
 	methods: {
