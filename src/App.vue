@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <Countdown date="January 1, 2018"></Countdown>
+      <Countdown></Countdown>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
 
 <style>
 #app {
-    background-color: #34495e;
+    background-color: #000;
     bottom: 0;
     left: 0;
     position: absolute;

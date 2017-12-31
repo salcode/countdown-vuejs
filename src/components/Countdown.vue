@@ -1,4 +1,5 @@
 <template>
+    <div class="background" style="background-image: url(images/{{backgroundImage}});"></div>
     <canvas id="countdown-canvas"></canvas>
     <h1 class="location">
         <p class="location__name">{{ location }}</p>
@@ -6,7 +7,7 @@
 
     <div class="countdown">
         <div class="block">
-            <p class="digit">{{ minutes }}:{{ seconds }}</p>
+            <p class="digit">{{ minutesRemaining }}:{{ secondsRemaining }}</p>
         </div>
     </div><!-- .countdown -->
 </template>
@@ -17,9 +18,12 @@ export default {
     ready() {
         this.celebrating = false;
         window.setInterval(() => {
-            this.now = Math.trunc((new Date()).getTime() / 1000);
-            this.secondsRemaining = this.getSecondsRemaining();
-            if ( ! this.celebrating && 0 === this.secondsRemaining % 60 ) {
+            this.now = new Date();
+            if (
+                ! this.celebrating
+                && 0 == this.minutesRemaining
+                && 0 == this.secondsRemaining
+            ) {
                 this.celebrate();
             }
         },250);
@@ -34,28 +38,78 @@ export default {
 
     data() {
         return {
-            now: Math.trunc((new Date()).getTime() / 1000),
+            now: new Date(),
             celebrating: false,
-            secondsRemaining: this.getSecondsRemaining()
+            locations: {
+                '0': {
+                    'name': 'Praia, Cape Verde',
+                    'image': 'praia-cape-verde.jpg',
+                    'imageSource': 'https://commons.wikimedia.org/wiki/File:Praia_aerial.jpg'
+                },
+                '1': {
+                    'name': 'Rio de Janeiro, Brazil',
+                    'image': 'rio-de-janeiro-brazil.jpg',
+                    'imageSource': 'https://pixabay.com/en/rio-de-janeiro-brazil-city-urban-1963744/'
+                },
+                '2': {
+                    'name': 'Buenos Aires, Argentina',
+                    'image': 'buenos-aires-argentia.jpg',
+                    'imageSource': 'https://www.flickr.com/photos/gameoflight/10363371446'
+                },
+                '3': {
+                    'name': 'Halifax, Nova Scotia, Canada',
+                    'image': 'halifax-nova-scotia.jpg',
+                    'imageSource': 'https://pixabay.com/en/halifax-nova-scotia-canada-city-2380861/'
+                },
+                '4': {
+                    'name': 'Reading, PA',
+                    'image': 'reading-pa.jpg'
+                },
+                '19': {
+                    'name': 'Tehran, Iran',
+                    'image': ''
+                },
+                '20': {
+                    'name': 'Moscow, Russia',
+                    'image': 'london-england.jpg'
+                },
+                '21': {
+                    'name': 'Cairo, Egypt',
+                    'image': 'reading-pa.jpg'
+                },
+                '22': {
+                    'name': 'Berlin, Germany',
+                    'image': ''
+                },
+                '23': {
+                    'name': 'London, England',
+                    'image': 'london-england.jpg',
+                    'imageSource': 'http://maxpixel.freegreatpicture.com/London-England-Clock-Big-Ben-Parliament-2626787'
+                }
+            }
         }
     },
 
     computed: {
-        seconds() {
-            return this.addLeadingZero( this.secondsRemaining % 60 );
+        secondsRemaining() {
+            return this.addLeadingZero( 59 - this.now.getUTCSeconds() );
         },
 
-        minutes() {
-            return Math.trunc( this.secondsRemaining / 60) % 60;
+        minutesRemaining() {
+            return this.addLeadingZero( 59 - this.now.getUTCMinutes() );
         },
 
         hours() {
-            return Math.trunc( this.secondsRemaining / 60 / 60) % 24;
+            return this.now.getUTCHours();
         },
 
 		location() {
-			return this.getLocation();
-		}
+			return this.getLocation().name;
+		},
+
+        backgroundImage() {
+            return this.getLocation().image;
+        },
     },
 	methods: {
         addLeadingZero( number ) {
@@ -65,16 +119,7 @@ export default {
             return '0' + number;
         },
         getLocation() {
-            var locations = {
-                '0': 'Reading, PA',
-                '1': 'Halifax, Nova Scotia, Canada',
-                '2': 'Buenos Aires, Argentina',
-                '3': 'Rio de Janeiro, Brazil',
-                '4': 'Praia, Cape Verde',
-                '5': 'London, England',
-                '6': 'Berlin, Germany',
-            };
-            return locations[ this.hours ] ? locations[ this.hours ] : 'Location ' + this.hours;
+            return this.locations[ this.hours ] ? this.locations[ this.hours ] : {};
         },
         getSecondsRemaining() {
             return this.date - Math.trunc(new Date().getTime() / 1000 );
@@ -88,7 +133,7 @@ export default {
                 that.showCountdown();
                 confettiStop();
                 that.celebrating = false;
-            }, 5000 );
+            }, 10000 );
         },
         hideCountdown() {
             document.getElementsByClassName('countdown')[0].classList.add('hide-me');
@@ -122,7 +167,7 @@ export default {
     justify-content: center;
     right: 0;
     top: 0;
-    z-index: 2;
+    z-index: 3;
 }
 
 .block {
@@ -142,6 +187,17 @@ export default {
 #countdown-canvas {
     bottom: 0;
     left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+.background {
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
     position: absolute;
     right: 0;
     top: 0;
