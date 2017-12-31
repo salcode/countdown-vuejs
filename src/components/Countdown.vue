@@ -68,21 +68,20 @@ export default {
                     'name': 'Reading, PA',
                     'image': 'reading-pa.jpg'
                 },
-                '19': {
-                    'name': 'Tehran, Iran',
-                    'image': ''
-                },
                 '20': {
                     'name': 'Moscow, Russia',
-                    'image': 'london-england.jpg'
+                    'image': 'moscow-russia.jpg',
+                    'imageSource': 'http://maxpixel.freegreatpicture.com/Capital-Moscow-Russia-Kremlin-Historically-538791'
                 },
                 '21': {
                     'name': 'Cairo, Egypt',
-                    'image': 'reading-pa.jpg'
+                    'image': 'cairo-egypt.jpg',
+                    'imageSource': 'https://commons.wikimedia.org/wiki/File:Pyramid_and_sphinx_of_cairo,_egypt.jpg'
                 },
                 '22': {
                     'name': 'Berlin, Germany',
-                    'image': ''
+                    'image': 'berlin-germany.jpg',
+                    'imageSource': 'https://pixabay.com/en/berlin-germany-berlin-cathedral-2975784/'
                 },
                 '23': {
                     'name': 'London, England',
