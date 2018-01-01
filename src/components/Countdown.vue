@@ -1,9 +1,11 @@
 <template>
-    <div class="background" v-bind:style="backgroundStyleObject"></div>
+    <div v-if="! celebrating" class="background" v-bind:style="backgroundStyleObject"></div>
     <canvas id="countdown-canvas"></canvas>
-    <h1 class="location">
+    <h1 v-if="! celebrating" class="location">
         <p class="location__name">{{ location }}</p>
     </h1>
+
+    <h1 v-if="celebrating" class="happy-new-year">Happy New Year!</h1>
 
     <div class="countdown">
         <div class="block">
@@ -40,6 +42,7 @@ export default {
         return {
             now: new Date(),
             celebrating: false,
+            celebrationDuration: 15, // in seconds
             locations: {
                 '0': {
                     'name': 'Praia, Cape Verde',
@@ -136,7 +139,7 @@ export default {
                 that.showCountdown();
                 confettiStop();
                 that.celebrating = false;
-            }, 10000 );
+            }, this.celebrationDuration * 1000 );
         },
         hideCountdown() {
             document.getElementsByClassName('countdown')[0].classList.add('hide-me');
@@ -206,5 +209,15 @@ export default {
     top: 0;
     width: 100%;
     z-index: 1;
+}
+.happy-new-year {
+    color: #fff;
+    font-size: 100px;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
 }
 </style>
